@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MaterialIcons } from '@expo/vector-icons';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
 
 export default function ApprenticeshipScreen() {
@@ -20,41 +19,62 @@ export default function ApprenticeshipScreen() {
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.title}>Cameron Construction</Text>
+          <Text style={styles.title}>🏗️ Cameron Construction</Text>
           <Text style={styles.subtitle}>Apprenticeship Program</Text>
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="info" size={28} color="#1a4d3a" />
-          <Text style={styles.cardTitle}>About the Program</Text>
-          <Text style={styles.cardText}>
-            Cameron Construction's apprenticeship program is designed to create a ladder of opportunity 
-            in the construction industry through developing jobsite skills and leadership.
-          </Text>
+          <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=200&fit=crop' }}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+          <View style={styles.cardContent}>
+            <Text style={styles.cardEmoji}>ℹ️</Text>
+            <Text style={styles.cardTitle}>About the Program</Text>
+            <Text style={styles.cardText}>
+              Cameron Construction's apprenticeship program is designed to create a ladder of opportunity 
+              in the construction industry through developing jobsite skills and leadership.
+            </Text>
+          </View>
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="school" size={28} color="#1a4d3a" />
-          <Text style={styles.cardTitle}>What You'll Learn</Text>
-          <Text style={styles.cardText}>
-            • Hands-on construction skills{'\n'}
-            • Leadership and teamwork{'\n'}
-            • Professional craftsmanship{'\n'}
-            • Jobsite safety and best practices{'\n'}
-            • Building techniques from experienced masters
-          </Text>
+          <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop' }}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+          <View style={styles.cardContent}>
+            <Text style={styles.cardEmoji}>🎓</Text>
+            <Text style={styles.cardTitle}>What You'll Learn</Text>
+            <Text style={styles.cardText}>
+              • Hands-on construction skills{'\n'}
+              • Leadership and teamwork{'\n'}
+              • Professional craftsmanship{'\n'}
+              • Jobsite safety and best practices{'\n'}
+              • Building techniques from experienced masters
+            </Text>
+          </View>
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="attach-money" size={28} color="#1a4d3a" />
-          <Text style={styles.cardTitle}>Opportunities</Text>
-          <Text style={styles.cardText}>
-            • Paid internships available{'\n'}
-            • Apprenticeship positions{'\n'}
-            • Full career path in construction{'\n'}
-            • Learn while you earn{'\n'}
-            • Build your future with your hands
-          </Text>
+          <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400&h=200&fit=crop' }}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+          <View style={styles.cardContent}>
+            <Text style={styles.cardEmoji}>💰</Text>
+            <Text style={styles.cardTitle}>Opportunities</Text>
+            <Text style={styles.cardText}>
+              • Paid internships available{'\n'}
+              • Apprenticeship positions{'\n'}
+              • Full career path in construction{'\n'}
+              • Learn while you earn{'\n'}
+              • Build your future with your hands
+            </Text>
+          </View>
         </View>
 
         <View style={styles.quoteCard}>
@@ -66,39 +86,43 @@ export default function ApprenticeshipScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="lightbulb" size={28} color="#ff6b35" />
-          <Text style={styles.cardTitle}>Why Construction?</Text>
-          <Text style={styles.cardText}>
-            Working with your hands is fulfilling and fun. The team atmosphere pushes you to do better. 
-            There's nothing like standing up on the peak of a roof, yelling down a measurement to your 
-            cut guy, him throwing you a cut piece of wood from below, you catching it and installing it 
-            for a perfect fit. Teamwork, Accomplishment, and you get paid!
-          </Text>
-          <Text style={styles.cardText}>
-            {'\n'}It's not for everyone—it's hard, sweaty work. It takes perseverance. It's old school. 
-            Learn a skill and become something. Be proud of what you do.
-          </Text>
+          <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=200&fit=crop' }}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+          <View style={styles.cardContent}>
+            <Text style={styles.cardEmoji}>💡</Text>
+            <Text style={styles.cardTitle}>Why Construction?</Text>
+            <Text style={styles.cardText}>
+              Working with your hands is fulfilling and fun. The team atmosphere pushes you to do better. 
+              There's nothing like standing up on the peak of a roof, yelling down a measurement to your 
+              cut guy, him throwing you a cut piece of wood from below, you catching it and installing it 
+              for a perfect fit. Teamwork, Accomplishment, and you get paid!
+            </Text>
+            <Text style={[styles.cardText, { marginTop: 12 }]}>
+              It's not for everyone—it's hard, sweaty work. It takes perseverance. It's old school. 
+              Learn a skill and become something. Be proud of what you do.
+            </Text>
+          </View>
         </View>
 
         <View style={styles.contactCard}>
-          <Text style={styles.contactTitle}>Ready to Apply?</Text>
+          <Text style={styles.contactTitle}>📞 Ready to Apply?</Text>
           <Text style={styles.contactText}>
             Contact Cameron Construction to learn more about apprenticeship opportunities.
           </Text>
           
           <TouchableOpacity style={styles.contactButton} onPress={handleCall}>
-            <MaterialIcons name="phone" size={20} color="#fff" />
-            <Text style={styles.contactButtonText}>Call: (916) 717-4172</Text>
+            <Text style={styles.contactButtonText}>📱 Call: (916) 717-4172</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.contactButton} onPress={handleEmail}>
-            <MaterialIcons name="email" size={20} color="#fff" />
-            <Text style={styles.contactButtonText}>Email Us</Text>
+            <Text style={styles.contactButtonText}>✉️ Email Us</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.applyButton} onPress={handleApply}>
-            <MaterialIcons name="open-in-new" size={20} color="#fff" />
-            <Text style={styles.applyButtonText}>Apply Online</Text>
+            <Text style={styles.applyButtonText}>🚀 Apply Online</Text>
           </TouchableOpacity>
         </View>
 
@@ -135,7 +159,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#1a4d3a',
     marginBottom: 4,
@@ -147,19 +171,30 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 12,
-    padding: 20,
     marginBottom: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    overflow: 'hidden',
+  },
+  cardImage: {
+    width: '100%',
+    height: 160,
+    backgroundColor: '#e0e0e0',
+  },
+  cardContent: {
+    padding: 16,
+  },
+  cardEmoji: {
+    fontSize: 28,
+    marginBottom: 8,
   },
   cardTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#1a4d3a',
-    marginTop: 12,
     marginBottom: 12,
   },
   cardText: {
@@ -207,13 +242,11 @@ const styles = StyleSheet.create({
   },
   contactButton: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 14,
     borderRadius: 8,
     marginBottom: 12,
-    gap: 8,
   },
   contactButtonText: {
     color: '#fff',
@@ -222,13 +255,11 @@ const styles = StyleSheet.create({
   },
   applyButton: {
     backgroundColor: '#ff6b35',
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 16,
     borderRadius: 8,
     marginTop: 8,
-    gap: 8,
   },
   applyButtonText: {
     color: '#fff',
@@ -270,4 +301,3 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
 });
-
