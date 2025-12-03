@@ -1,20 +1,21 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MaterialIcons } from '@expo/vector-icons';
+import { SponsorsFooter } from '../../components/SponsorsFooter';
 
 interface CareerStage {
   title: string;
   description: string;
-  icon: keyof typeof MaterialIcons.glyphMap;
+  emoji: string;
   duration: string;
   benefits: string[];
+  thumbnail: string;
 }
 
 const careerStages: CareerStage[] = [
   {
     title: 'Paid Internship',
     description: 'Get started with hands-on experience while earning',
-    icon: 'school',
+    emoji: '🎓',
     duration: '3-6 months',
     benefits: [
       'Learn basic construction skills',
@@ -22,11 +23,12 @@ const careerStages: CareerStage[] = [
       'Work with experienced mentors',
       'Build your resume',
     ],
+    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=200&fit=crop',
   },
   {
     title: 'Apprentice',
     description: 'Formal apprenticeship program with structured learning',
-    icon: 'build',
+    emoji: '🔨',
     duration: '1-2 years',
     benefits: [
       'Structured skill development',
@@ -34,11 +36,12 @@ const careerStages: CareerStage[] = [
       'Learn from master craftspeople',
       'Teamwork and leadership skills',
     ],
+    thumbnail: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop',
   },
   {
     title: 'Journeyman',
     description: 'Skilled craftsperson with proven abilities',
-    icon: 'handyman',
+    emoji: '🛠️',
     duration: '2-4 years',
     benefits: [
       'Full journeyman wages',
@@ -46,11 +49,12 @@ const careerStages: CareerStage[] = [
       'Teach apprentices',
       'Specialized skills development',
     ],
+    thumbnail: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=200&fit=crop',
   },
   {
     title: 'Master Craftsperson',
     description: 'Expert level with leadership opportunities',
-    icon: 'star',
+    emoji: '⭐',
     duration: '5+ years',
     benefits: [
       'Top-tier compensation',
@@ -58,6 +62,7 @@ const careerStages: CareerStage[] = [
       'Business development',
       'Mentor the next generation',
     ],
+    thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=200&fit=crop',
   },
 ];
 
@@ -66,7 +71,7 @@ export default function CareerPathScreen() {
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.title}>Your Career Path</Text>
+          <Text style={styles.title}>📈 Your Career Path</Text>
           <Text style={styles.subtitle}>
             From intern to master craftsperson—build your future step by step
           </Text>
@@ -75,48 +80,55 @@ export default function CareerPathScreen() {
         {careerStages.map((stage, index) => (
           <View key={index}>
             <View style={styles.stageCard}>
-              <View style={styles.stageHeader}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcons name={stage.icon} size={32} color="#1a4d3a" />
-                </View>
-                <View style={styles.stageTitleContainer}>
-                  <Text style={styles.stageTitle}>{stage.title}</Text>
-                  <Text style={styles.stageDuration}>{stage.duration}</Text>
-                </View>
-              </View>
-              <Text style={styles.stageDescription}>{stage.description}</Text>
-              
-              <View style={styles.benefitsContainer}>
-                <Text style={styles.benefitsTitle}>Benefits:</Text>
-                {stage.benefits.map((benefit, benefitIndex) => (
-                  <View key={benefitIndex} style={styles.benefitItem}>
-                    <MaterialIcons name="check-circle" size={18} color="#1a4d3a" />
-                    <Text style={styles.benefitText}>{benefit}</Text>
+              <Image 
+                source={{ uri: stage.thumbnail }}
+                style={styles.stageImage}
+                resizeMode="cover"
+              />
+              <View style={styles.stageContent}>
+                <View style={styles.stageHeader}>
+                  <View style={styles.emojiContainer}>
+                    <Text style={styles.stageEmoji}>{stage.emoji}</Text>
                   </View>
-                ))}
+                  <View style={styles.stageTitleContainer}>
+                    <Text style={styles.stageTitle}>{stage.title}</Text>
+                    <Text style={styles.stageDuration}>⏱️ {stage.duration}</Text>
+                  </View>
+                </View>
+                <Text style={styles.stageDescription}>{stage.description}</Text>
+                
+                <View style={styles.benefitsContainer}>
+                  <Text style={styles.benefitsTitle}>✅ Benefits:</Text>
+                  {stage.benefits.map((benefit, benefitIndex) => (
+                    <View key={benefitIndex} style={styles.benefitItem}>
+                      <Text style={styles.benefitBullet}>•</Text>
+                      <Text style={styles.benefitText}>{benefit}</Text>
+                    </View>
+                  ))}
+                </View>
               </View>
             </View>
 
             {index < careerStages.length - 1 && (
               <View style={styles.connector}>
-                <MaterialIcons name="arrow-downward" size={24} color="#ff6b35" />
+                <Text style={styles.connectorArrow}>⬇️</Text>
               </View>
             )}
           </View>
         ))}
 
         <View style={styles.opportunityCard}>
-          <MaterialIcons name="trending-up" size={32} color="#ff6b35" />
+          <Text style={styles.opportunityEmoji}>🚀</Text>
           <Text style={styles.opportunityTitle}>Create Opportunities</Text>
           <Text style={styles.opportunityText}>
             As you progress in your career, you'll be able to:
           </Text>
           <View style={styles.opportunityList}>
-            <Text style={styles.opportunityItem}>• Provide for your family</Text>
-            <Text style={styles.opportunityItem}>• Build financial stability</Text>
-            <Text style={styles.opportunityItem}>• Start your own business</Text>
-            <Text style={styles.opportunityItem}>• Mentor others in your community</Text>
-            <Text style={styles.opportunityItem}>• Create lasting impact</Text>
+            <Text style={styles.opportunityItem}>💰 Provide for your family</Text>
+            <Text style={styles.opportunityItem}>🏠 Build financial stability</Text>
+            <Text style={styles.opportunityItem}>🏢 Start your own business</Text>
+            <Text style={styles.opportunityItem}>🤝 Mentor others in your community</Text>
+            <Text style={styles.opportunityItem}>🌟 Create lasting impact</Text>
           </View>
         </View>
 
@@ -127,6 +139,8 @@ export default function CareerPathScreen() {
           </Text>
           <Text style={styles.quoteAuthor}>— Stephen Cameron</Text>
         </View>
+
+        <SponsorsFooter />
       </ScrollView>
     </SafeAreaView>
   );
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#1a4d3a',
     marginBottom: 8,
@@ -160,27 +174,38 @@ const styles = StyleSheet.create({
   stageCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
-    padding: 20,
     marginBottom: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    overflow: 'hidden',
+  },
+  stageImage: {
+    width: '100%',
+    height: 140,
+    backgroundColor: '#e0e0e0',
+  },
+  stageContent: {
+    padding: 16,
   },
   stageHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
   },
-  iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+  emojiContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     backgroundColor: '#f0f7f4',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    marginRight: 12,
+  },
+  stageEmoji: {
+    fontSize: 24,
   },
   stageTitleContainer: {
     flex: 1,
@@ -203,6 +228,9 @@ const styles = StyleSheet.create({
   },
   benefitsContainer: {
     marginTop: 8,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 8,
+    padding: 12,
   },
   benefitsTitle: {
     fontSize: 16,
@@ -212,19 +240,27 @@ const styles = StyleSheet.create({
   },
   benefitItem: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
+    alignItems: 'flex-start',
+    marginBottom: 6,
+  },
+  benefitBullet: {
+    fontSize: 14,
+    color: '#1a4d3a',
+    marginRight: 8,
+    fontWeight: 'bold',
   },
   benefitText: {
     fontSize: 14,
     color: '#333',
-    marginLeft: 8,
     flex: 1,
     lineHeight: 20,
   },
   connector: {
     alignItems: 'center',
     paddingVertical: 8,
+  },
+  connectorArrow: {
+    fontSize: 24,
   },
   opportunityCard: {
     backgroundColor: '#fff8f0',
@@ -236,11 +272,14 @@ const styles = StyleSheet.create({
     borderLeftColor: '#ff6b35',
     alignItems: 'center',
   },
+  opportunityEmoji: {
+    fontSize: 40,
+    marginBottom: 12,
+  },
   opportunityTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#1a4d3a',
-    marginTop: 12,
     marginBottom: 8,
   },
   opportunityText: {
@@ -281,4 +320,3 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-
