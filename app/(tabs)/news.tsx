@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
+
+function openLink(url: string) {
+  if (Platform.OS === 'web') {
+    window.location.href = url;
+  } else {
+    Linking.openURL(url);
+  }
+}
 
 interface NewsArticle {
   id: string;
@@ -14,7 +22,7 @@ interface NewsArticle {
   source: string;
 }
 
-// Real news articles with thumbnails and links
+// Real news articles with meaningful thumbnails
 const newsArticles: NewsArticle[] = [
   {
     id: '1',
@@ -23,7 +31,7 @@ const newsArticles: NewsArticle[] = [
     date: 'December 2024',
     category: 'industry',
     url: 'https://www.bls.gov/ooh/construction-and-extraction/home.htm',
-    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=300&fit=crop',
     source: 'Bureau of Labor Statistics',
   },
   {
@@ -33,7 +41,7 @@ const newsArticles: NewsArticle[] = [
     date: 'December 2024',
     category: 'opportunity',
     url: 'https://www.forbes.com/sites/forbesbusinesscouncil/2023/03/07/why-the-skilled-trades-are-an-attractive-career-option/',
-    thumbnail: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=300&fit=crop',
     source: 'Forbes',
   },
   {
@@ -43,7 +51,7 @@ const newsArticles: NewsArticle[] = [
     date: 'November 2024',
     category: 'success',
     url: 'https://www.constructiondive.com/',
-    thumbnail: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&h=300&fit=crop',
     source: 'Construction Dive',
   },
   {
@@ -53,7 +61,7 @@ const newsArticles: NewsArticle[] = [
     date: 'November 2024',
     category: 'tips',
     url: 'https://www.osha.gov/construction',
-    thumbnail: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=300&fit=crop',
     source: 'OSHA',
   },
   {
@@ -63,7 +71,7 @@ const newsArticles: NewsArticle[] = [
     date: 'October 2024',
     category: 'industry',
     url: 'https://www.npr.org/sections/money/',
-    thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&h=300&fit=crop',
     source: 'NPR',
   },
   {
@@ -73,7 +81,7 @@ const newsArticles: NewsArticle[] = [
     date: 'October 2024',
     category: 'opportunity',
     url: 'https://www.apprenticeship.gov/',
-    thumbnail: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&h=300&fit=crop',
     source: 'Apprenticeship.gov',
   },
 ];
@@ -107,7 +115,7 @@ export default function NewsScreen() {
     : newsArticles;
 
   function handleArticlePress(article: NewsArticle) {
-    Linking.openURL(article.url);
+    openLink(article.url);
   }
 
   return (

@@ -1,12 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Linking, Platform } from 'react-native';
+
+function openLink(url: string) {
+  if (Platform.OS === 'web') {
+    window.location.href = url;
+  } else {
+    Linking.openURL(url);
+  }
+}
 
 export function SponsorsFooter() {
   function handleNestingHome() {
-    Linking.openURL('https://www.nestinghomesolutions.com');
+    openLink('https://www.nestinghomesolutions.com');
   }
 
   function handleCameronConstruction() {
-    Linking.openURL('https://www.cameronconstruction.info');
+    openLink('https://www.cameronconstruction.info');
   }
 
   return (

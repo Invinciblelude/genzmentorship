@@ -1,22 +1,30 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
 
+function openLink(url: string) {
+  if (Platform.OS === 'web') {
+    window.location.href = url;
+  } else {
+    Linking.openURL(url);
+  }
+}
+
 export default function MentorScreen() {
   function handleWebsite() {
-    Linking.openURL('https://www.nestinghomesolutions.com/experience');
+    openLink('https://www.nestinghomesolutions.com/experience');
   }
 
   function handleContact() {
-    Linking.openURL('https://www.nestinghomesolutions.com');
+    openLink('https://www.nestinghomesolutions.com');
   }
 
   function handleCall() {
-    Linking.openURL('tel:9164082256');
+    openLink('tel:9164082256');
   }
 
   function handleEmail() {
-    Linking.openURL('mailto:vince@nestinghomesolutions.com');
+    openLink('mailto:vince@nestinghomesolutions.com');
   }
 
   return (
@@ -36,7 +44,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=150&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -53,7 +61,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=150&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -72,7 +80,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=150&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -101,7 +109,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=150&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -242,7 +250,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: '100%',
-    height: 140,
+    height: 160,
     backgroundColor: '#e0e0e0',
   },
   cardContent: {

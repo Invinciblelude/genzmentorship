@@ -6,63 +6,63 @@ interface CareerStage {
   title: string;
   description: string;
   emoji: string;
+  thumbnail: string;
   duration: string;
   benefits: string[];
-  thumbnail: string;
 }
 
 const careerStages: CareerStage[] = [
   {
     title: 'Paid Internship',
-    description: 'Get started with hands-on experience while earning',
+    description: 'Get started with hands-on experience while earning money',
     emoji: '🎓',
+    thumbnail: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=250&fit=crop',
     duration: '3-6 months',
     benefits: [
       'Learn basic construction skills',
       'Earn while you learn',
       'Work with experienced mentors',
-      'Build your resume',
+      'Build your professional resume',
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=200&fit=crop',
   },
   {
     title: 'Apprentice',
-    description: 'Formal apprenticeship program with structured learning',
+    description: 'Develop your skills under master craftspeople',
     emoji: '🔨',
+    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=250&fit=crop',
     duration: '1-2 years',
     benefits: [
-      'Structured skill development',
-      'Increased pay as you progress',
-      'Learn from master craftspeople',
-      'Teamwork and leadership skills',
+      'Hands-on training every day',
+      'Competitive apprentice wages',
+      'Learn from industry veterans',
+      'Start building your specialty',
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop',
   },
   {
     title: 'Journeyman',
-    description: 'Skilled craftsperson with proven abilities',
+    description: 'Work independently with full skill recognition',
     emoji: '🛠️',
+    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=250&fit=crop',
     duration: '2-4 years',
     benefits: [
-      'Full journeyman wages',
-      'Lead projects and teams',
-      'Teach apprentices',
-      'Specialized skills development',
+      'Full professional wages',
+      'Lead small projects',
+      'Train new apprentices',
+      'Specialize in your craft',
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=200&fit=crop',
   },
   {
     title: 'Master Craftsperson',
-    description: 'Expert level with leadership opportunities',
+    description: 'Lead teams and shape the next generation',
     emoji: '⭐',
+    thumbnail: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=250&fit=crop',
     duration: '5+ years',
     benefits: [
       'Top-tier compensation',
-      'Project management',
-      'Business development',
+      'Run major projects',
+      'Start your own business',
       'Mentor the next generation',
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=200&fit=crop',
   },
 ];
 
@@ -81,27 +81,29 @@ export default function CareerPathScreen() {
           <View key={index}>
             <View style={styles.stageCard}>
               <Image 
-                source={{ uri: stage.thumbnail }}
+                source={{ uri: stage.thumbnail }} 
                 style={styles.stageImage}
                 resizeMode="cover"
               />
               <View style={styles.stageContent}>
                 <View style={styles.stageHeader}>
-                  <View style={styles.emojiContainer}>
+                  <View style={styles.iconContainer}>
                     <Text style={styles.stageEmoji}>{stage.emoji}</Text>
                   </View>
                   <View style={styles.stageTitleContainer}>
                     <Text style={styles.stageTitle}>{stage.title}</Text>
-                    <Text style={styles.stageDuration}>⏱️ {stage.duration}</Text>
+                    <View style={styles.durationBadge}>
+                      <Text style={styles.durationText}>⏱️ {stage.duration}</Text>
+                    </View>
                   </View>
                 </View>
                 <Text style={styles.stageDescription}>{stage.description}</Text>
-                
+
                 <View style={styles.benefitsContainer}>
-                  <Text style={styles.benefitsTitle}>✅ Benefits:</Text>
+                  <Text style={styles.benefitsTitle}>Benefits:</Text>
                   {stage.benefits.map((benefit, benefitIndex) => (
                     <View key={benefitIndex} style={styles.benefitItem}>
-                      <Text style={styles.benefitBullet}>•</Text>
+                      <Text style={styles.benefitEmoji}>✅</Text>
                       <Text style={styles.benefitText}>{benefit}</Text>
                     </View>
                   ))}
@@ -111,7 +113,7 @@ export default function CareerPathScreen() {
 
             {index < careerStages.length - 1 && (
               <View style={styles.connector}>
-                <Text style={styles.connectorArrow}>⬇️</Text>
+                <Text style={styles.connectorEmoji}>⬇️</Text>
               </View>
             )}
           </View>
@@ -174,7 +176,6 @@ const styles = StyleSheet.create({
   stageCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
-    marginBottom: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -184,28 +185,28 @@ const styles = StyleSheet.create({
   },
   stageImage: {
     width: '100%',
-    height: 140,
+    height: 160,
     backgroundColor: '#e0e0e0',
   },
   stageContent: {
-    padding: 16,
+    padding: 20,
   },
   stageHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 12,
   },
-  emojiContainer: {
+  iconContainer: {
     width: 50,
     height: 50,
     borderRadius: 25,
     backgroundColor: '#f0f7f4',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     marginRight: 12,
   },
   stageEmoji: {
-    fontSize: 24,
+    fontSize: 28,
   },
   stageTitleContainer: {
     flex: 1,
@@ -216,102 +217,102 @@ const styles = StyleSheet.create({
     color: '#1a4d3a',
     marginBottom: 4,
   },
-  stageDuration: {
-    fontSize: 14,
-    color: '#666',
+  durationBadge: {
+    backgroundColor: '#ff6b35',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    alignSelf: 'flex-start',
+  },
+  durationText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: 'bold',
   },
   stageDescription: {
     fontSize: 15,
-    color: '#333',
+    color: '#666',
     marginBottom: 16,
     lineHeight: 22,
   },
   benefitsContainer: {
-    marginTop: 8,
     backgroundColor: '#f9f9f9',
     borderRadius: 8,
     padding: 12,
   },
   benefitsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 14,
+    fontWeight: 'bold',
     color: '#1a4d3a',
     marginBottom: 8,
   },
   benefitItem: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginBottom: 6,
   },
-  benefitBullet: {
-    fontSize: 14,
-    color: '#1a4d3a',
+  benefitEmoji: {
+    fontSize: 16,
     marginRight: 8,
-    fontWeight: 'bold',
   },
   benefitText: {
     fontSize: 14,
     color: '#333',
     flex: 1,
-    lineHeight: 20,
   },
   connector: {
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: 12,
   },
-  connectorArrow: {
-    fontSize: 24,
+  connectorEmoji: {
+    fontSize: 28,
   },
   opportunityCard: {
-    backgroundColor: '#fff8f0',
+    backgroundColor: '#1a4d3a',
     borderRadius: 12,
     padding: 24,
-    marginTop: 16,
-    marginBottom: 16,
-    borderLeftWidth: 4,
-    borderLeftColor: '#ff6b35',
+    marginTop: 24,
     alignItems: 'center',
   },
   opportunityEmoji: {
-    fontSize: 40,
+    fontSize: 48,
     marginBottom: 12,
   },
   opportunityTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#1a4d3a',
-    marginBottom: 8,
+    color: '#fff',
+    marginBottom: 12,
   },
   opportunityText: {
     fontSize: 15,
-    color: '#333',
+    color: '#fff',
     marginBottom: 16,
     textAlign: 'center',
-    lineHeight: 22,
   },
   opportunityList: {
-    width: '100%',
+    alignSelf: 'stretch',
   },
   opportunityItem: {
-    fontSize: 15,
-    color: '#333',
-    marginBottom: 8,
-    lineHeight: 22,
+    fontSize: 16,
+    color: '#fff',
+    marginBottom: 10,
+    paddingLeft: 8,
   },
   quoteCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
     padding: 20,
-    marginTop: 8,
+    marginTop: 24,
     borderLeftWidth: 4,
-    borderLeftColor: '#1a4d3a',
+    borderLeftColor: '#ff6b35',
   },
   quote: {
     fontSize: 16,
     fontStyle: 'italic',
     color: '#333',
-    marginBottom: 12,
     lineHeight: 24,
+    marginBottom: 12,
   },
   quoteAuthor: {
     fontSize: 14,

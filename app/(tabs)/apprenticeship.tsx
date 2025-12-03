@@ -1,18 +1,26 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
 
+function openLink(url: string) {
+  if (Platform.OS === 'web') {
+    window.location.href = url;
+  } else {
+    Linking.openURL(url);
+  }
+}
+
 export default function ApprenticeshipScreen() {
   function handleApply() {
-    Linking.openURL('https://www.cameronconstruction.info/careers-with-cameron-construction');
+    openLink('https://www.cameronconstruction.info/careers-with-cameron-construction');
   }
 
   function handleCall() {
-    Linking.openURL('tel:9167174172');
+    openLink('tel:9167174172');
   }
 
   function handleEmail() {
-    Linking.openURL('mailto:Cameronconstruction@live.com');
+    openLink('mailto:Cameronconstruction@live.com');
   }
 
   return (
@@ -25,7 +33,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=200&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -41,7 +49,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1605152276897-4f618f831968?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -60,7 +68,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400&h=200&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -87,7 +95,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=200&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />

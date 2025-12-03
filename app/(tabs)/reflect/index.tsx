@@ -14,7 +14,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/self-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=150&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -34,7 +34,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/society-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=150&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -54,7 +54,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/journal" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=400&h=150&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: '100%',
-    height: 120,
+    height: 140,
     backgroundColor: '#e0e0e0',
   },
   cardContent: {
