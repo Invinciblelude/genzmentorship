@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
-import { MaterialIcons } from '@expo/vector-icons';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
 
 export default function HomeScreen() {
@@ -16,7 +15,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="article" size={32} color="#1a4d3a" />
+          <Text style={styles.cardIcon}>📰</Text>
           <Text style={styles.cardTitle}>Blue Collar News</Text>
           <Text style={styles.cardDescription}>
             Stay updated on construction industry trends, opportunities, and inspiring success stories from Gen Z workers.
@@ -29,7 +28,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="edit" size={32} color="#1a4d3a" />
+          <Text style={styles.cardIcon}>✍️</Text>
           <Text style={styles.cardTitle}>Reflect</Text>
           <Text style={styles.cardDescription}>
             Take time to reflect on yourself and society. Journal your thoughts and discover your path.
@@ -42,7 +41,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="work" size={32} color="#1a4d3a" />
+          <Text style={styles.cardIcon}>👷</Text>
           <Text style={styles.cardTitle}>Apprenticeship Program</Text>
           <Text style={styles.cardDescription}>
             Learn about Cameron Construction's apprenticeship program. Get hands-on experience and build your skills.
@@ -55,7 +54,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="trending-up" size={32} color="#1a4d3a" />
+          <Text style={styles.cardIcon}>📈</Text>
           <Text style={styles.cardTitle}>Career Path</Text>
           <Text style={styles.cardDescription}>
             Explore your career opportunities in construction. See how you can grow and create opportunities for your family.
@@ -68,7 +67,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.card}>
-          <MaterialIcons name="person" size={32} color="#1a4d3a" />
+          <Text style={styles.cardIcon}>🧑‍🏫</Text>
           <Text style={styles.cardTitle}>Meet Your Mentor</Text>
           <Text style={styles.cardDescription}>
             Learn about the mentor behind this program and how their journey can inspire yours.
@@ -130,11 +129,15 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignItems: 'center',
   },
+  cardIcon: {
+    fontSize: 40,
+    marginBottom: 8,
+  },
   cardTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#1a4d3a',
-    marginTop: 12,
+    marginTop: 4,
     marginBottom: 8,
   },
   cardDescription: {
@@ -179,4 +182,3 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-
