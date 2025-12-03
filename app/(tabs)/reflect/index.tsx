@@ -14,7 +14,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/self-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=250&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -34,7 +34,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/society-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&h=250&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -54,7 +54,7 @@ export default function ReflectScreen() {
         <Link href="/(tabs)/reflect/journal" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
             <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=250&fit=crop' }}
+              source={{ uri: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=250&fit=crop' }}
               style={styles.cardImage}
               resizeMode="cover"
             />
