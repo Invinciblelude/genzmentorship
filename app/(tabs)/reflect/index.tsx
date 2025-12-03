@@ -1,58 +1,78 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
-import { MaterialIcons } from '@expo/vector-icons';
 
 export default function ReflectScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Reflection & Journaling</Text>
+        <Text style={styles.title}>✍️ Reflection & Journaling</Text>
         <Text style={styles.subtitle}>
           Take time to reflect on yourself and society. Discover your path forward.
         </Text>
 
         <Link href="/(tabs)/reflect/self-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
-            <MaterialIcons name="person" size={32} color="#1a4d3a" />
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=150&fit=crop' }}
+              style={styles.cardImage}
+              resizeMode="cover"
+            />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>Self Reflection</Text>
-              <Text style={styles.cardDescription}>
-                Reflect on your strengths, goals, and what matters to you. Understand yourself better.
-              </Text>
+              <Text style={styles.cardEmoji}>🧘</Text>
+              <View style={styles.cardTextContainer}>
+                <Text style={styles.cardTitle}>Self Reflection</Text>
+                <Text style={styles.cardDescription}>
+                  Reflect on your strengths, goals, and what matters to you. Understand yourself better.
+                </Text>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
             </View>
-            <MaterialIcons name="chevron-right" size={24} color="#666" />
           </TouchableOpacity>
         </Link>
 
         <Link href="/(tabs)/reflect/society-reflection" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
-            <MaterialIcons name="groups" size={32} color="#1a4d3a" />
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=150&fit=crop' }}
+              style={styles.cardImage}
+              resizeMode="cover"
+            />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>Society Reflection</Text>
-              <Text style={styles.cardDescription}>
-                Think about your community, society, and how you can make a positive impact.
-              </Text>
+              <Text style={styles.cardEmoji}>🌍</Text>
+              <View style={styles.cardTextContainer}>
+                <Text style={styles.cardTitle}>Society Reflection</Text>
+                <Text style={styles.cardDescription}>
+                  Think about your community, society, and how you can make a positive impact.
+                </Text>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
             </View>
-            <MaterialIcons name="chevron-right" size={24} color="#666" />
           </TouchableOpacity>
         </Link>
 
         <Link href="/(tabs)/reflect/journal" asChild>
           <TouchableOpacity style={styles.reflectionCard}>
-            <MaterialIcons name="book" size={32} color="#1a4d3a" />
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=400&h=150&fit=crop' }}
+              style={styles.cardImage}
+              resizeMode="cover"
+            />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>My Journal</Text>
-              <Text style={styles.cardDescription}>
-                View and continue your previous reflections and journal entries.
-              </Text>
+              <Text style={styles.cardEmoji}>📖</Text>
+              <View style={styles.cardTextContainer}>
+                <Text style={styles.cardTitle}>My Journal</Text>
+                <Text style={styles.cardDescription}>
+                  View and continue your previous reflections and journal entries.
+                </Text>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
             </View>
-            <MaterialIcons name="chevron-right" size={24} color="#666" />
           </TouchableOpacity>
         </Link>
 
         <View style={styles.tipCard}>
-          <MaterialIcons name="lightbulb" size={24} color="#ff6b35" />
+          <Text style={styles.tipEmoji}>💡</Text>
           <Text style={styles.tipText}>
             Regular reflection helps you understand your values and create meaningful goals for your future.
           </Text>
@@ -88,19 +108,30 @@ const styles = StyleSheet.create({
   reflectionCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
-    padding: 20,
     marginBottom: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    overflow: 'hidden',
+  },
+  cardImage: {
+    width: '100%',
+    height: 120,
+    backgroundColor: '#e0e0e0',
   },
   cardContent: {
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cardEmoji: {
+    fontSize: 32,
+    marginRight: 12,
+  },
+  cardTextContainer: {
     flex: 1,
-    marginLeft: 16,
   },
   cardTitle: {
     fontSize: 18,
@@ -113,6 +144,11 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
+  cardArrow: {
+    fontSize: 24,
+    color: '#1a4d3a',
+    fontWeight: 'bold',
+  },
   tipCard: {
     backgroundColor: '#fff8f0',
     borderRadius: 12,
@@ -123,12 +159,14 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#ff6b35',
   },
+  tipEmoji: {
+    fontSize: 24,
+    marginRight: 12,
+  },
   tipText: {
     flex: 1,
     fontSize: 14,
     color: '#333',
-    marginLeft: 12,
     lineHeight: 20,
   },
 });
-

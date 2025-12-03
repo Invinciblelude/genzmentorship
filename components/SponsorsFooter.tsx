@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 
 export function SponsorsFooter() {
   function handleNestingHome() {
@@ -12,35 +11,35 @@ export function SponsorsFooter() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Proudly Sponsored By</Text>
+      <Text style={styles.title}>🤝 Proudly Sponsored By</Text>
       
       <TouchableOpacity style={styles.sponsorCard} onPress={handleNestingHome}>
-        <MaterialIcons name="home-work" size={32} color="#1a4d3a" />
+        <Text style={styles.sponsorEmoji}>🏠</Text>
         <View style={styles.sponsorInfo}>
           <Text style={styles.sponsorName}>Nesting Home Solutions</Text>
           <Text style={styles.sponsorTagline}>Building Dreams, Creating Homes</Text>
         </View>
-        <MaterialIcons name="open-in-new" size={20} color="#666" />
+        <Text style={styles.linkArrow}>→</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.sponsorCard} onPress={handleCameronConstruction}>
-        <MaterialIcons name="construction" size={32} color="#1a4d3a" />
+        <Text style={styles.sponsorEmoji}>🔨</Text>
         <View style={styles.sponsorInfo}>
           <Text style={styles.sponsorName}>Cameron Construction</Text>
           <Text style={styles.sponsorTagline}>27 Years of Elite Craftsmanship</Text>
         </View>
-        <MaterialIcons name="open-in-new" size={20} color="#666" />
+        <Text style={styles.linkArrow}>→</Text>
       </TouchableOpacity>
 
       <View style={styles.partnershipText}>
-        <MaterialIcons name="handshake" size={20} color="#ff6b35" />
+        <Text style={styles.partnershipEmoji}>🎯</Text>
         <Text style={styles.partnershipDescription}>
           In partnership to create opportunities for Gen Z in construction trades
         </Text>
       </View>
 
       <Text style={styles.footer}>
-        Gen Z Mentorship © 2024 • Building Futures Together
+        Gen Z Mentorship © 2024 • Building Futures Together 🚀
       </Text>
     </View>
   );
@@ -76,9 +75,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
+  sponsorEmoji: {
+    fontSize: 32,
+    marginRight: 12,
+  },
   sponsorInfo: {
     flex: 1,
-    marginLeft: 16,
   },
   sponsorName: {
     fontSize: 16,
@@ -90,6 +92,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#666',
   },
+  linkArrow: {
+    fontSize: 20,
+    color: '#1a4d3a',
+    fontWeight: 'bold',
+  },
   partnershipText: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -98,7 +105,10 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     borderTopWidth: 1,
     borderTopColor: '#e0e0e0',
-    gap: 8,
+  },
+  partnershipEmoji: {
+    fontSize: 20,
+    marginRight: 8,
   },
   partnershipDescription: {
     fontSize: 13,
@@ -114,4 +124,3 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 });
-

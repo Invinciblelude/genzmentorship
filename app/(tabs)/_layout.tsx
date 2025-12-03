@@ -1,5 +1,13 @@
 import { Tabs } from 'expo-router';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Text } from 'react-native';
+
+function TabIcon({ emoji, focused }: { emoji: string; focused: boolean }) {
+  return (
+    <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.6 }}>
+      {emoji}
+    </Text>
+  );
+}
 
 export default function TabsLayout() {
   return (
@@ -14,6 +22,13 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopColor: '#e0e0e0',
+          paddingTop: 4,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          marginTop: -4,
+          marginBottom: 4,
         },
       }}
     >
@@ -21,57 +36,44 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="home" size={size} color={color} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="🏠" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="news"
         options={{
           title: 'News',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="article" size={size} color={color} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="📰" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="reflect"
         options={{
           title: 'Reflect',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="edit" size={size} color={color} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="✍️" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="apprenticeship"
         options={{
-          title: 'Apprenticeship',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="work" size={size} color={color} />
-          ),
+          title: 'Apprentice',
+          tabBarIcon: ({ focused }) => <TabIcon emoji="👷" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="career-path"
         options={{
-          title: 'Career Path',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="trending-up" size={size} color={color} />
-          ),
+          title: 'Career',
+          tabBarIcon: ({ focused }) => <TabIcon emoji="📈" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="mentor"
         options={{
-          title: 'Your Mentor',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="person" size={size} color={color} />
-          ),
+          title: 'Mentor',
+          tabBarIcon: ({ focused }) => <TabIcon emoji="🧑‍🏫" focused={focused} />,
         }}
       />
     </Tabs>
   );
 }
-
