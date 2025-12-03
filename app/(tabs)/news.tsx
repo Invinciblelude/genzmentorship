@@ -22,7 +22,7 @@ interface NewsArticle {
   source: string;
 }
 
-// Real news articles with meaningful thumbnails
+// Real news articles - ALL UNIQUE thumbnails
 const newsArticles: NewsArticle[] = [
   {
     id: '1',
@@ -31,7 +31,7 @@ const newsArticles: NewsArticle[] = [
     date: 'December 2024',
     category: 'industry',
     url: 'https://www.bls.gov/ooh/construction-and-extraction/home.htm',
-    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=300&fit=crop',
     source: 'Bureau of Labor Statistics',
   },
   {
@@ -41,7 +41,7 @@ const newsArticles: NewsArticle[] = [
     date: 'December 2024',
     category: 'opportunity',
     url: 'https://www.forbes.com/sites/forbesbusinesscouncil/2023/03/07/why-the-skilled-trades-are-an-attractive-career-option/',
-    thumbnail: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=300&fit=crop',
     source: 'Forbes',
   },
   {
@@ -51,7 +51,7 @@ const newsArticles: NewsArticle[] = [
     date: 'November 2024',
     category: 'success',
     url: 'https://www.constructiondive.com/',
-    thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=300&fit=crop',
     source: 'Construction Dive',
   },
   {
@@ -61,7 +61,7 @@ const newsArticles: NewsArticle[] = [
     date: 'November 2024',
     category: 'tips',
     url: 'https://www.osha.gov/construction',
-    thumbnail: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=300&fit=crop',
     source: 'OSHA',
   },
   {
@@ -71,7 +71,7 @@ const newsArticles: NewsArticle[] = [
     date: 'October 2024',
     category: 'industry',
     url: 'https://www.npr.org/sections/money/',
-    thumbnail: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=600&h=300&fit=crop',
     source: 'NPR',
   },
   {
@@ -81,7 +81,7 @@ const newsArticles: NewsArticle[] = [
     date: 'October 2024',
     category: 'opportunity',
     url: 'https://www.apprenticeship.gov/',
-    thumbnail: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=300&fit=crop',
     source: 'Apprenticeship.gov',
   },
 ];

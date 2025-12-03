@@ -29,7 +29,7 @@ const careerStages: CareerStage[] = [
     title: 'Apprentice',
     description: 'Develop your skills under master craftspeople',
     emoji: '🔨',
-    thumbnail: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=600&h=250&fit=crop',
     duration: '1-2 years',
     benefits: [
       'Hands-on training every day',
@@ -42,7 +42,7 @@ const careerStages: CareerStage[] = [
     title: 'Journeyman',
     description: 'Work independently with full skill recognition',
     emoji: '🛠️',
-    thumbnail: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=250&fit=crop',
     duration: '2-4 years',
     benefits: [
       'Full professional wages',
@@ -55,7 +55,7 @@ const careerStages: CareerStage[] = [
     title: 'Master Craftsperson',
     description: 'Lead teams and shape the next generation',
     emoji: '⭐',
-    thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=250&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=250&fit=crop',
     duration: '5+ years',
     benefits: [
       'Top-tier compensation',

@@ -44,7 +44,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=250&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -61,7 +61,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1585128792020-803d29415281?w=600&h=250&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -80,7 +80,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=250&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -109,7 +109,7 @@ export default function MentorScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=250&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=250&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />

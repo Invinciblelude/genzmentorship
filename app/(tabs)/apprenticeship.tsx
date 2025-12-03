@@ -49,7 +49,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=300&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -68,7 +68,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
@@ -95,7 +95,7 @@ export default function ApprenticeshipScreen() {
 
         <View style={styles.card}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&h=300&fit=crop' }}
+            source={{ uri: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=300&fit=crop' }}
             style={styles.cardImage}
             resizeMode="cover"
           />
