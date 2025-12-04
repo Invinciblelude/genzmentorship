@@ -1,7 +1,15 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
+
+const openLink = (url: string) => {
+  if (Platform.OS === 'web') {
+    window.location.href = url;
+  } else {
+    Linking.openURL(url);
+  }
+};
 
 export default function HomeScreen() {
   return (
@@ -75,6 +83,41 @@ export default function HomeScreen() {
           <Link href="/(tabs)/mentor" asChild>
             <TouchableOpacity style={styles.cardButton}>
               <Text style={styles.cardButtonText}>Meet Your Mentor</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+
+        {/* NW20 Employment Card Section */}
+        <View style={styles.nw20Card}>
+          <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=200&fit=crop' }} 
+            style={styles.nw20Image}
+          />
+          <View style={styles.nw20Content}>
+            <Text style={styles.nw20Badge}>🆔 EMPLOYMENT</Text>
+            <Text style={styles.cardTitle}>Get Your NW20 Card</Text>
+            <Text style={styles.cardDescription}>
+              Ready to work? Create your NW20 Employment Card at TheNetwork20.com to showcase your skills and connect with employers in construction and trades.
+            </Text>
+            <TouchableOpacity 
+              style={styles.nw20Button}
+              onPress={() => openLink('https://thenetwork20.com')}
+            >
+              <Text style={styles.nw20ButtonText}>🚀 Create Your NW20 Card</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Community Comments Section */}
+        <View style={styles.card}>
+          <Text style={styles.cardIcon}>💬</Text>
+          <Text style={styles.cardTitle}>Community Comments</Text>
+          <Text style={styles.cardDescription}>
+            Share your thoughts, ask questions, and connect with others on their mentorship journey.
+          </Text>
+          <Link href="/(tabs)/comments" asChild>
+            <TouchableOpacity style={styles.cardButton}>
+              <Text style={styles.cardButtonText}>Join the Discussion</Text>
             </TouchableOpacity>
           </Link>
         </View>
@@ -180,5 +223,51 @@ const styles = StyleSheet.create({
     color: '#666',
     fontWeight: '600',
     textAlign: 'right',
+  },
+  nw20Card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    marginBottom: 16,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    borderWidth: 2,
+    borderColor: '#ff6b35',
+  },
+  nw20Image: {
+    width: '100%',
+    height: 120,
+    backgroundColor: '#e0e0e0',
+  },
+  nw20Content: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  nw20Badge: {
+    backgroundColor: '#ff6b35',
+    color: '#fff',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 20,
+    fontSize: 12,
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  nw20Button: {
+    backgroundColor: '#ff6b35',
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 8,
+    minWidth: 200,
+  },
+  nw20ButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
