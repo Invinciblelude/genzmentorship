@@ -1,34 +1,44 @@
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SponsorsFooter } from '../../components/SponsorsFooter';
-
-interface Comment {
-  id: string;
-  name: string;
-  message: string;
-  timestamp: number;
-}
+import { supabase, Comment, getComments, addComment } from '../../lib/supabase';
 
 export default function CommentsScreen() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     loadComments();
+
+    // Subscribe to real-time updates
+    const subscription = supabase
+      .channel('comments')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'comments' }, (payload) => {
+        setComments((prev) => [payload.new as Comment, ...prev]);
+      })
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const loadComments = async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      const stored = await AsyncStorage.getItem('genz_comments');
-      if (stored) {
-        setComments(JSON.parse(stored));
-      }
-    } catch (error) {
-      console.error('Error loading comments:', error);
+      const data = await getComments();
+      setComments(data);
+    } catch (err) {
+      setError('Failed to load comments. Please try again.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -36,29 +46,32 @@ export default function CommentsScreen() {
     if (!name.trim() || !message.trim()) return;
     
     setIsSubmitting(true);
-    
-    const newComment: Comment = {
-      id: Date.now().toString(),
-      name: name.trim(),
-      message: message.trim(),
-      timestamp: Date.now(),
-    };
+    setError(null);
 
     try {
-      const updatedComments = [newComment, ...comments];
-      await AsyncStorage.setItem('genz_comments', JSON.stringify(updatedComments));
-      setComments(updatedComments);
-      setName('');
-      setMessage('');
-    } catch (error) {
-      console.error('Error saving comment:', error);
+      const newComment = await addComment(name.trim(), message.trim());
+      if (newComment) {
+        // Comment will be added via real-time subscription, but add it locally too for instant feedback
+        setComments((prev) => {
+          // Avoid duplicates from real-time
+          if (prev.find(c => c.id === newComment.id)) return prev;
+          return [newComment, ...prev];
+        });
+        setName('');
+        setMessage('');
+      } else {
+        setError('Failed to post comment. Please try again.');
+      }
+    } catch (err) {
+      setError('Failed to post comment. Please try again.');
+      console.error(err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const formatDate = (timestamp: number) => {
-    const date = new Date(timestamp);
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
       month: 'short', 
       day: 'numeric', 
@@ -79,6 +92,16 @@ export default function CommentsScreen() {
             Share your thoughts, ask questions, and connect with others on their mentorship journey
           </Text>
         </View>
+
+        {/* Error Message */}
+        {error && (
+          <View style={styles.errorCard}>
+            <Text style={styles.errorText}>⚠️ {error}</Text>
+            <TouchableOpacity onPress={loadComments}>
+              <Text style={styles.retryText}>Tap to retry</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Comment Form */}
         <View style={styles.formCard}>
@@ -113,7 +136,7 @@ export default function CommentsScreen() {
           </View>
 
           <TouchableOpacity 
-            style={[styles.submitButton, (!name.trim() || !message.trim()) && styles.submitButtonDisabled]}
+            style={[styles.submitButton, (!name.trim() || !message.trim() || isSubmitting) && styles.submitButtonDisabled]}
             onPress={saveComment}
             disabled={!name.trim() || !message.trim() || isSubmitting}
           >
@@ -121,6 +144,12 @@ export default function CommentsScreen() {
               {isSubmitting ? '⏳ Posting...' : '📝 Post Comment'}
             </Text>
           </TouchableOpacity>
+        </View>
+
+        {/* Real-time indicator */}
+        <View style={styles.liveIndicator}>
+          <View style={styles.liveDot} />
+          <Text style={styles.liveText}>Comments update in real-time</Text>
         </View>
 
         {/* Guidelines */}
@@ -137,10 +166,16 @@ export default function CommentsScreen() {
         {/* Comments List */}
         <View style={styles.commentsSection}>
           <Text style={styles.sectionTitle}>
-            {comments.length > 0 ? `💭 Recent Comments (${comments.length})` : '💭 Be the first to comment!'}
+            {isLoading ? '💭 Loading comments...' : 
+             comments.length > 0 ? `💭 Recent Comments (${comments.length})` : '💭 Be the first to comment!'}
           </Text>
           
-          {comments.length === 0 ? (
+          {isLoading ? (
+            <View style={styles.loadingState}>
+              <ActivityIndicator size="large" color="#1a4d3a" />
+              <Text style={styles.loadingText}>Loading comments...</Text>
+            </View>
+          ) : comments.length === 0 ? (
             <View style={styles.emptyState}>
               <Text style={styles.emptyIcon}>🎤</Text>
               <Text style={styles.emptyText}>No comments yet</Text>
@@ -155,7 +190,7 @@ export default function CommentsScreen() {
                   </View>
                   <View style={styles.commentMeta}>
                     <Text style={styles.commentName}>{comment.name}</Text>
-                    <Text style={styles.commentDate}>{formatDate(comment.timestamp)}</Text>
+                    <Text style={styles.commentDate}>{formatDate(comment.created_at)}</Text>
                   </View>
                 </View>
                 <Text style={styles.commentMessage}>{comment.message}</Text>
@@ -208,6 +243,26 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
     lineHeight: 20,
+  },
+  errorCard: {
+    backgroundColor: '#ffebee',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    alignItems: 'center',
+    borderLeftWidth: 4,
+    borderLeftColor: '#f44336',
+  },
+  errorText: {
+    fontSize: 14,
+    color: '#c62828',
+    marginBottom: 8,
+  },
+  retryText: {
+    fontSize: 14,
+    color: '#1a4d3a',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
   formCard: {
     backgroundColor: '#fff',
@@ -269,6 +324,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  liveIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  liveDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#4caf50',
+    marginRight: 8,
+  },
+  liveText: {
+    fontSize: 12,
+    color: '#666',
+  },
   guidelinesCard: {
     backgroundColor: '#e8f5e9',
     borderRadius: 12,
@@ -296,6 +368,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#1a4d3a',
     marginBottom: 12,
+  },
+  loadingState: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 32,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 14,
+    color: '#666',
   },
   emptyState: {
     backgroundColor: '#fff',
@@ -387,4 +475,3 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
 });
-
